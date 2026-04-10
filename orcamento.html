@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento | César Rodrigues Fotografia</title>
+    <meta name="description" content="Solicite seu orçamento de fotografia profissional">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #c9a962;
+            --accent-dark: #a88c4a;
+            --border: #2a2a2a;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        a { color: inherit; text-decoration: none; }
+        input, textarea, select {
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        button { font-family: inherit; cursor: pointer; }
+        
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .page-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+        .back-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        .page-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+        }
+        .form-page {
+            min-height: 100vh;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(201,169,98,0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .form-page-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .form-page-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 400;
+            margin-bottom: 12px;
+            text-align: center;
+            color: var(--text-primary);
+        }
+        .page-tagline {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .form-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .contact-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 8px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 40px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+        .btn-submit:hover {
+            background: var(--accent-dark);
+        }
+        .form-decor {
+            text-align: center;
+            margin-bottom: 32px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <nav class="page-nav">
+            <a href="index.html" class="back-btn">
+                ← Voltar
+            </a>
+            <a href="index.html" class="page-logo">CÉSAR RODRIGUES</a>
+            <span></span>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <div class="form-page-content">
+            <h1>Vamos criar algo bonito?</h1>
+            <p class="page-tagline">Você é arte ♡</p>
+            <p class="form-subtitle">Preencha os dados abaixo que retornarei em breve</p>
+            
+            <div class="form-decor">❤ &nbsp; ✦ &nbsp; ◈</div>
+            
+            <form class="contact-form" id="budget-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Seu nome</label>
+                        <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(DDD) 00000-0000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="service">Tipo de sessão</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecione</option>
+                            <option value="Casais">Casais / Casamento</option>
+                            <option value="Eventos">Eventos</option>
+                            <option value="Ensaios">Ensaios</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="other-service-group" style="display: none;">
+                        <label for="other-service">Qual?</label>
+                        <input type="text" id="other-service" name="other-service" placeholder="Descreva o tipo de sessão">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Data prevista</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Local</label>
+                        <input type="text" id="location" name="location" placeholder="Cidade/Local">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Conte-me sobre seu projeto</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Descreva suas ideias, estilo, expectativas..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-submit">Enviar pedido de orçamento</button>
+            </form>
+        </div>
+    </main>
+
+    <div class="modal" id="thank-you-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div class="modal-icon">✓</div>
+            <h3>Obrigado!</h3>
+            <p>Sua mensagem foi enviada com sucesso.</p>
+            <p>Em breve retornarei seu contato.</p>
+            <a href="index.html" class="btn-primary">Voltar ao site</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
