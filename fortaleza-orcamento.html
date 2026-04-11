@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortaleza EC | Orçamento Fotografia Esportiva</title>
+    <meta name="description" content="Solicite orçamento para cobertura fotográfica de jogos do Fortaleza EC no Castelão">
+    <meta property="og:title" content="Fortaleza EC | Orçamento">
+    <meta property="og:description" content="Cobertura fotográfica do Fortaleza EC">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    <style>
+        :root {
+            --fc-red: #E52326;
+            --fc-blue: #0059A1;
+            --fc-white: #FFFFFF;
+            --fc-bg: #0a0a0a;
+            --fc-dark: #0d151c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--fc-bg);
+            color: var(--fc-white);
+            line-height: 1.6;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 0;
+            background: rgba(10,10,10,0.98);
+            z-index: 1000;
+            border-bottom: 3px solid var(--fc-red);
+        }
+        .page-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            color: var(--fc-white);
+            border-color: var(--fc-red);
+            background: var(--fc-red);
+        }
+        .page-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .page-logo img {
+            height: 32px;
+            width: 32px;
+            object-fit: contain;
+        }
+        .page-logo .red { color: var(--fc-red); }
+        .page-logo .blue { color: var(--fc-blue); }
+        
+        .form-page {
+            min-height: 100vh;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center bottom, rgba(229,35,38,0.1) 0%, transparent 50%), var(--fc-bg);
+        }
+        .form-page-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .form-page-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .form-page-content h1 .red { color: var(--fc-red); }
+        .form-page-content h1 .blue { color: var(--fc-blue); }
+        .page-tagline {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--fc-red);
+            text-align: center;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        .form-subtitle {
+            color: #666;
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        
+        .contact-form {
+            background: var(--fc-dark);
+            border: 1px solid #222;
+            border-top: 3px solid var(--fc-red);
+            padding: 32px;
+            border-radius: 8px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--fc-bg);
+            border: 1px solid #333;
+            color: var(--fc-white);
+            border-radius: 4px;
+            transition: border-color 0.3s;
+            font-size: 0.95rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--fc-red);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #555;
+        }
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--fc-red) 0%, #c41e22 100%);
+            color: var(--fc-white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--fc-blue);
+            border-radius: 4px;
+            margin-top: 12px;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover {
+            background: linear-gradient(135deg, var(--fc-blue) 0%, #004680 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229,35,38,0.4);
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+        .form-footer p {
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: var(--fc-dark);
+            border: 1px solid var(--fc-red);
+            padding: 40px;
+            text-align: center;
+            max-width: 380px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 1.5rem;
+            color: #666;
+            background: none;
+            border: none;
+        }
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--fc-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        .modal-content h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .modal-content p {
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .modal-content .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            background: var(--fc-red);
+            border-color: var(--fc-red);
+            color: white;
+        }
+        
+@media (max-width: 600px) {
+            .page-header {
+                z-index: 1001;
+            }
+            
+            .form-page-content {
+                padding-bottom: 80px;
+            }
+            
+            /* Botão flutuante para celulares - sempre visível */
+            .back-btn {
+                position: fixed !important;
+                bottom: 50px !important;
+                top: auto !important;
+                left: 24px !important;
+                right: auto !important;
+                padding: 14px 24px !important;
+                font-size: 0.9rem !important;
+                background: #E52326 !important;
+                border: none !important;
+                border-radius: 30px !important;
+                z-index: 9999 !important;
+                box-shadow: 0 6px 20px rgba(229,35,38,0.6) !important;
+                color: white !important;
+                display: inline-flex !important;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            
+            .back-btn:hover {
+                background: #0059A1 !important;
+                transform: scale(1.05);
+            }
+            
+            .back-btn {
+                position: fixed !important;
+                bottom: 50px !important;
+                top: auto !important;
+                left: 24px !important;
+                right: auto !important;
+                padding: 12px 18px !important;
+                font-size: 0.85rem !important;
+                background: var(--fc-red) !important;
+                border: none !important;
+                border-radius: 30px !important;
+                z-index: 2000 !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+                color: white !important;
+                display: flex !important;
+                align-items: center;
+            }
+            
+            .back-btn:hover {
+                background: var(--fc-blue) !important;
+                transform: scale(1.05);
+            }
+            
+            .page-header {
+                z-index: 1001 !important;
+            }
+                border-radius: 30px;
+                z-index: 1001;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+                color: white !important;
+            }
+            .back-btn:hover {
+                background: var(--fc-blue) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <nav class="page-nav">
+            <a href="index.html" class="back-btn">
+                ← Voltar
+            </a>
+            <a href="index.html" class="page-logo">
+                <img src="Fortaleza_Esporte_Clube_logo.png" alt="Fortaleza EC">
+                <span class="red">FORTALEZA</span><span class="blue">EC</span>
+            </a>
+            <span></span>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <div class="form-page-content">
+            <h1><span class="red">Fortaleza</span> <span class="blue">EC</span> | Orçamento</h1>
+            <p class="page-tagline">Fortaleza EC</p>
+            <p class="form-subtitle">Solicite sua cobertura fotográfica para jogos no Castelão</p>
+            
+            <form class="contact-form" id="budget-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Seu nome</label>
+                        <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(DDD) 00000-0000">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="type">Tipo de cobertura</label>
+                        <select id="type" name="type" required>
+                            <option value="">Selecione</option>
+                            <option value="Jogo">Jogo no Castelão</option>
+                            <option value="Torcedor">Fotos de Torcedores</option>
+                            <option value="Torcida">Torcida Inteira</option>
+                            <option value="Liderancas">Lideranças de Torcida</option>
+                            <option value="Treino">Treino</option>
+                            <option value="Bastidores">Bastidores</option>
+                            <option value="Evento">Evento especial</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="other-type-group" style="display: none;">
+                        <label for="other-type">Qual?</label>
+                        <input type="text" id="other-type" name="other-type" placeholder="Descreva">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Data do jogo</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="adversario">Adversário</label>
+                        <input type="text" id="adversario" name="adversario" placeholder="Time adversário">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Detalhes da cobertura</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Áreas que deseja fotografar, necessidades especiais..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Solicitar orçamento</button>
+                
+                <div class="form-footer">
+                    <p>📍 Atendo em Fortaleza e Castelão | CE</p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div class="modal" id="thank-you-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div class="modal-icon">✓</div>
+            <h3>Solicitação enviada!</h3>
+            <p>Em breve entrarei em contato.</p>
+            <p>Vamos Juntos ♣️</p>
+            <a href="index.html" class="back-btn">← Voltar</a>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('budget-form');
+        const typeSelect = document.getElementById('type');
+        const otherGroup = document.getElementById('other-type-group');
+        const dateInput = document.getElementById('date');
+        
+        // Data mínima = hoje
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = today.getFullYear();
+        dateInput.setAttribute('min', `${year}-${month}-${day}`);
+        
+        // Mostrar campo "Outro"
+        typeSelect.addEventListener('change', function() {
+            if (this.value === 'Outro') {
+                otherGroup.style.display = 'block';
+                document.getElementById('other-type').required = true;
+            } else {
+                otherGroup.style.display = 'none';
+                document.getElementById('other-type').required = false;
+            }
+        });
+        
+        // Enviar formulário
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            let type = typeSelect.value;
+            const date = dateInput.value;
+            const adversario = document.getElementById('adversario').value;
+            const message = document.getElementById('message').value;
+            
+            if (type === 'Outro') {
+                type = document.getElementById('other-type').value;
+            }
+            
+            const whatsapp = '558892840072';
+            
+            let text = `*Olá César! Gostaria de cobrir o Fortaleza EC*\n\n`;
+            text += `*Nome:* ${name}\n`;
+            text += `*WhatsApp:* ${phone}\n`;
+            text += `*Tipo:* ${type}\n`;
+            text += `*Data:* ${date || 'A definir'}\n`;
+            text += `*Adversário:* ${adversario || 'A definir'}\n`;
+            text += `*Detalhes:* ${message || 'Nenhum'}`;
+            
+            window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+            
+            form.reset();
+            otherGroup.style.display = 'none';
+            document.getElementById('thank-you-modal').classList.add('active');
+        });
+        
+        // Fechar modal
+        document.querySelector('.modal-close').addEventListener('click', function() {
+            document.getElementById('thank-you-modal').classList.remove('active');
+        });
+        
+        document.getElementById('thank-you-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+    });
+    </script>
+</body>
+</html>
